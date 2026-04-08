@@ -364,15 +364,18 @@ $(PKCS7_LIB) : $(PKCS7_OBJ)
 
 # --- Main tools and viewers ---
 
-MUTOOL_SRC := source/tools/mutool.c
-MUTOOL_SRC += source/tools/muconvert.c
-MUTOOL_SRC += source/tools/mudraw.c
-MUTOOL_SRC += source/tools/murun.c
-MUTOOL_SRC += source/tools/mutrace.c
-MUTOOL_SRC += source/tools/mugrep.c
-MUTOOL_SRC += source/tools/mubar.c
-MUTOOL_SRC += source/tools/cmapdump.c
-MUTOOL_SRC += $(sort $(wildcard source/tools/pdf*.c))
+# Keka only needs pdfextract
+MUTOOL_SRC := source/tools/mutool-keka.c
+MUTOOL_SRC += source/tools/pdfextract.c
+#MUTOOL_SRC := source/tools/mutool.c
+#MUTOOL_SRC += source/tools/muconvert.c
+#MUTOOL_SRC += source/tools/mudraw.c
+#MUTOOL_SRC += source/tools/murun.c
+#MUTOOL_SRC += source/tools/mutrace.c
+#MUTOOL_SRC += source/tools/mugrep.c
+#MUTOOL_SRC += source/tools/mubar.c
+#MUTOOL_SRC += source/tools/cmapdump.c
+#MUTOOL_SRC += $(sort $(wildcard source/tools/pdf*.c))
 MUTOOL_OBJ := $(MUTOOL_SRC:%.c=$(OUT)/%.o)
 MUTOOL_EXE := $(OUT)/mutool
 $(MUTOOL_EXE) : $(MUTOOL_OBJ) $(MUPDF_LIB) $(THIRD_LIB) $(PKCS7_LIB) $(THREAD_LIB)
